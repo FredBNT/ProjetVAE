@@ -24,7 +24,6 @@ public class AjouterUtilisateur extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/ajouter.jsp").forward(request, response);
 	}
 
@@ -77,9 +76,7 @@ public class AjouterUtilisateur extends HttpServlet {
 				request.setAttribute("erreurMDP", "les 2 mdp ne sont pas identiques");
 				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/ajouter.jsp").forward(request, response);
 			}
-
 		}
-
 		else {
 			System.out.println("Problème lors de la création de l'utilisateur");
 			doGet(request, response);

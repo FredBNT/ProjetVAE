@@ -64,4 +64,8 @@ public class UtilisateurManager {
 		return DAOFactory.getUtilisateurDAO().verificationMdp(numUtil);
 	}
 
+	public static String recupMail(String sPseudo) throws DALException {
+		return DAOFactory.getUtilisateurDAO().recupMail(sPseudo);
+	}
+
 }

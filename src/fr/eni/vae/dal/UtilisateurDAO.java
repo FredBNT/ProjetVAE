@@ -1,5 +1,7 @@
 package fr.eni.vae.dal;
 
+import java.sql.SQLException;
+
 import fr.eni.vae.bo.Utilisateur;
 
 public interface UtilisateurDAO {
@@ -32,5 +34,7 @@ public interface UtilisateurDAO {
 	public Utilisateur obtenirUnUtil(int noUtil) throws DALException;
 
 	public Utilisateur obtenirUnUtilpseudo(String pseudo) throws DALException;
+
+	public String recupMail(String sPseudo) throws DALException;
 
 }

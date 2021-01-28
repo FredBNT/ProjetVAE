@@ -29,9 +29,6 @@
 										<label>Mot de passe </label> <input class="form-control"
 											type="password" name="MdpSecu">
 									</div>
-									<!-- form-group end.// -->
-
-									<!-- form-group end.// -->
 								</div>
 								<!-- form-row end.// -->
 								<c:if test="${error != null}" var="test">

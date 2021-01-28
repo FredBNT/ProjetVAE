@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.jpg" />
+<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.png" />
 <%@include file="integrationStyle.jsp"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
+<head>
+<meta charset="UTF-8">
+<title>Ventes Aux Enchères</title>
+</head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<div class="container-fluid">
@@ -27,9 +30,6 @@
 	</div>
 </nav>
 
-
-<h2 class="text-center">Création de nouveau compte</h2>
-
 <c:if test="${erreurPseudo != null}" var="test">
 	<div class="alert alert-danger" role="alert">${erreurPseudo}</div>
 </c:if>
@@ -47,14 +47,11 @@
 </c:if>
 <!--  AMR  -->
 <div class="container">
-
-
-
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<div class="card">
 				<header class="card-header">
-					<h4 class="card-title mt-2">Inscription</h4>
+					<h4 class="card-title mt-2">Création de nouveau compte</h4>
 				</header>
 				<article class="card-body">
 					<form action="./AjouterUtilisateur" method="post">
@@ -154,26 +151,37 @@
 						<!-- form-row end.// -->
 
 						<br>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">
-								Inscription</button>
-
-						</div>
-						<!-- form-group// -->
-					</form><br>
-					<form method="get" action="index.html">
-						<button class="btn btn-warning btn-block" type="submit">Abandonner</button>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<button type="submit" class="btn btn-dark btn-block">
+										Inscription</button>
 					</form>
-				</article>
-				<!-- card-body end .// -->
-				<div class="border-top card-body text-center"></div>
+								</div>
+							</div>
+								<div class="col"></div>
+						<div class="col">
+						<form method="get" action="index.html">
+							<button class="btn btn-warning btn-block" type="submit">Abandonner</button>
+						</form>
+				
 			</div>
-			<!-- card.// -->
-		</div>
-		<!-- col.//-->
 
-	</div>
-	<!-- row.//-->
+
+
+	<!-- form-group// -->
+
+
+	</article>
+	<!-- card-body end .// -->
+	<div class="border-top card-body text-center"></div>
+</div>
+<!-- card.// -->
+</div>
+<!-- col.//-->
+
+</div>
+<!-- row.//-->
 
 
 </div>

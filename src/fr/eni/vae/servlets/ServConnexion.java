@@ -47,16 +47,13 @@ public class ServConnexion extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		if (vLogin != null || vMail != null && vMdp != null) {
+		if ((vLogin != null || vMail != null) && vMdp != null) {
 			Utilisateur vUtilisateur = null;
 
 			try {
 				vUtilisateur = UtilisateurManager.verification(vLogin, vMdp, vMail);
-
 			} catch (DALException e) {
-
 				e.printStackTrace();
-
 			}
 			// Ajout des informations utilisateur sur son profil
 

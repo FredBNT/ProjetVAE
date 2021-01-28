@@ -13,6 +13,7 @@ import fr.eni.vae.dal.DALException;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
+	private final String RECUPMAIL = "select email from UTILISATEURS where pseudo = ?;";
 	private final String LISTER = "select * from UTILISATEURS where no_utilisateur = ?;";
 	private final String LISTERPSEUDO = "select * from UTILISATEURS where pseudo = ?;";
 	private final String VERIFICATION = "select * from UTILISATEURS where pseudo = ? or email = ? and mot_de_passe = ?;";
@@ -23,7 +24,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String AUTREUTILISATEUR = "select pseudo, rue, code_postal, ville, telephone from UTILISATEURS where pseudo = ?; ";
 	private final String MODIFIERCREDIT = "update UTILISATEURS set credit = ? WHERE no_utilisateur= ?;";
 	private final String VERIFMDP = "select mot_de_passe from UTILISATEURS where no_utilisateur = ?;";
-
 	private final String RECHERCHE_UN_PSEUDO = "select pseudo FROM UTILISATEURS where no_utilisateur = ?;";
 
 	public Utilisateur rechercher(String pseudo, String mdp) throws DALException {
@@ -140,11 +140,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(1, pseudo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-
 				System.out.println("Ce pseudo est déjà utilisé.");
 			} else {
 				i = true;
-
 			}
 		} catch (SQLException e) {
 
@@ -158,7 +156,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			}
 		}
-
 		return i;
 	}
 
@@ -397,13 +394,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setInt(1, numUtil);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-
 				pseudoUtil = rs.getString("pseudo");
-
 			}
-
 		} catch (SQLException e) {
-
 			throw new DALException("Probleme - rechercher un pseudo - " + e.getMessage());
 		} finally {
 			try {
@@ -584,6 +577,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return user;
 
+	}
+
+	@Override
+	public String recupMail(String sPseudo) throws DALException {
+		// récupération du mdp avant modification du profil
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String mail = null;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			pstmt = cnx.prepareStatement(RECUPMAIL);
+			pstmt.setString(1, sPseudo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				mail=rs.getString("email");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (cnx != null)
+					cnx.close();
+			} catch (SQLException e) {
+				throw new DALException("Probleme - FermerConnexion - " + e.getMessage());
+			}
+		}
+		return mail;
 	}
 
 }

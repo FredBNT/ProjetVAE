@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServDeconnecter
+ * @author jbodet2019
  */
 @WebServlet("/ServDeconnecter")
 public class ServDeconnecter extends HttpServlet {

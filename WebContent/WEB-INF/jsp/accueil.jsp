@@ -6,8 +6,8 @@
 
 <!DOCTYPE html>
 
-<title>Troc Enchere - Accueil</title>
-<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.jpg" />
+<title>Vente Aux Enchères</title>
+<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.png" />
 <%@include file="integrationStyle.jsp"%>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -50,7 +50,7 @@
 				</header>
 				<article class="card-body">
 					<!-- Formulaire de connexion -->
-					<form action="./index.html" " method="post">
+					<form action="./index.html" method="post">
 						<div class="form-row">
 							<div class="col form-group">
 								<label>Identifiant </label> <input type="text"
@@ -60,7 +60,6 @@
 							<!-- form-group end.// -->
 						</div>
 						<!-- form-row end.// -->
-
 						<div class="form-row">
 							<div class="col form-group">
 								<label>Mot de Passe </label> <input class="form-control"
@@ -70,39 +69,38 @@
 							<!-- form-group end.// -->
 						</div>
 						<!-- form-row end.// -->
-						<div class="form-check">
+						<div>
 							<input type="checkbox" class="form-check-input"
-								id="dropdownCheck2"> <label class="form-check-label"
+								id="dropdownCheck2"> <label class="checkbox checkbox-black"
 								for="dropdownCheck2"> Se souvenir de moi </label>
-							<p class="text-end">
+							<p class="text-end" >
 								<a href="./ServOublieMDP" id="MotDePasseOublie">Mot de passe
 									oublié ?</a>
 							</p>
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block"
+							<button type="submit" class="btn btn-dark btn-block"
 								name="sConnexion">Connexion</button>
 						</div>
-			</div>
-			<!-- form-group// -->
-			</form>
+						<!-- form-group// -->
+					</form>
 
-			<%
-				if (request.getAttribute("error") != null) {
-			%>
-			<div class="alert alert-danger" role="alert"><%=request.getAttribute("error")%></div>
-			<%
-				}
-			%>
-			</article>
-			<!-- card-body end .// -->
+					<%
+						if (request.getAttribute("error") != null) {
+					%>
+					<div class="alert alert-danger" role="alert"><%=request.getAttribute("error")%></div>
+					<%
+						}
+					%>
+				</article>
+				<!-- card-body end .// -->
+			</div>
+			<!-- card.// -->
 		</div>
-		<!-- card.// -->
+		<!-- col.//-->
 	</div>
-	<!-- col.//-->
-</div>
-<!-- row.//-->
+	<!-- row.//-->
 </div>
 <!--container end.//-->
 
