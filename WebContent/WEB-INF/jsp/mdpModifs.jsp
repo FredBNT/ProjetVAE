@@ -4,12 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%@include file="integrationStyle.jsp"%>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 
 <div class="container">
