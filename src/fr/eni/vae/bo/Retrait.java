@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 /**
  * 
- * @author jbodet2019
- * 
  */
 public class Retrait implements Serializable{
 

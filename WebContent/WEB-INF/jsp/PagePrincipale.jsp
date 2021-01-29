@@ -91,8 +91,6 @@
 							<option>Brico</option>
 						</select>
 					</div>
-
-
 					<h6></h6>
 
 					<div style="text-align: center;">

@@ -8,8 +8,6 @@ public class Enchere implements Serializable{
 	
 	/**
 	 * 
-	 * @author jbodet2019
-	 * 
 	 */
 	
 	private int noVente;

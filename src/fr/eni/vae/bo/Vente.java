@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * 
- * @author jbodet2019
  *
  */
 // Constructeur par d�faut
