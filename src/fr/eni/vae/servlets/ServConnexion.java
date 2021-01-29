@@ -22,7 +22,6 @@ public class ServConnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		if (request.getParameter("successCreateUser") != null
 				&& request.getParameter("successCreateUser").equals("1")) {
 			request.setAttribute("MessageAjoutUser", "Votre compte vient d'être créé.");
@@ -40,7 +39,13 @@ public class ServConnexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		if (request.getParameter("successCreateUser") != null
+				&& request.getParameter("successCreateUser").equals("1")) {
+			doGet(request, response);
+		}
 		String vLogin = request.getParameter("sPseudo");
 		String vMdp = request.getParameter("sMdp");
 		String vMail = request.getParameter("sPseudo");

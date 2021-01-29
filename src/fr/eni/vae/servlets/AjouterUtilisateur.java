@@ -33,6 +33,9 @@ public class AjouterUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		Utilisateur unUtilisateur = null;
 		boolean testP, testM, testT;
 
@@ -66,7 +69,6 @@ public class AjouterUtilisateur extends HttpServlet {
 				try {
 					UtilisateurManager.ajouter(unUtilisateur);
 				} catch (DALException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				request.setAttribute("messageCreation", unUtilisateur.getCredit());

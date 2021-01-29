@@ -65,28 +65,18 @@
 								</div>
 							</div>
 							<br>
-							<c:choose>
-								<c:when test="${(existPseudo != null)}">
-									<form method="get" action="index.html">
-										<button class="btn btn-dark btn-block" type="submit">Retour</button>
-									</form>
-								</c:when>
-								<c:when test="${(existMail != null)}">
-									<form method="get" action="index.html">
-										<button class="btn btn-dark btn-block" type="submit">Retour</button>
-									</form>
-								</c:when>
-								<c:otherwise>
-									<button type="submit" class="btn btn-dark btn-block">Réinitialiser
-										le mot de passe</button>
-								</c:otherwise>
-							</c:choose>
 
-
-
-
+							<c:if test="${(!retour)}" var="test">
+								<button type="submit" class="btn btn-dark btn-block">Réinitialiser
+									le mot de passe</button>
+							</c:if>
 
 						</form>
+						<c:if test="${(retour)}" var="test">
+							<form method="get" action="index.html">
+								<button class="btn btn-dark btn-block" type="submit">Retour</button>
+							</form>
+						</c:if>
 				</div>
 			</div>
 

@@ -46,6 +46,7 @@
 	<div class="alert alert-danger" role="alert">${messageCreation}</div>
 </c:if>
 <!--  AMR  -->
+<br>
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
@@ -157,34 +158,17 @@
 									<button type="submit" class="btn btn-dark btn-block">
 										Inscription</button>
 					</form>
-								</div>
-							</div>
-								<div class="col"></div>
-						<div class="col">
-						<form method="get" action="index.html">
-							<button class="btn btn-warning btn-block" type="submit">Abandonner</button>
-						</form>
-				
 			</div>
+		</div>
+		<div class="col"></div>
+		<div class="col">
+			<form method="get" action="index.html">
+				<button class="btn btn-warning btn-block" type="submit">Abandonner</button>
+			</form>
+		</div>
+
+	</div>
 
 
-
-	<!-- form-group// -->
-
-
-	</article>
-	<!-- card-body end .// -->
-	<div class="border-top card-body text-center"></div>
-</div>
-<!-- card.// -->
-</div>
-<!-- col.//-->
-
-</div>
-<!-- row.//-->
-
-
-</div>
-
-<jsp:include page="/WEB-INF/fragments/footer.jsp"></jsp:include>
-<!--container end.//-->
+	<jsp:include page="/WEB-INF/fragments/footer.jsp"></jsp:include>
+	<!--container end.//-->

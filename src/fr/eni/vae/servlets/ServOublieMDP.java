@@ -39,17 +39,20 @@ public class ServOublieMDP extends HttpServlet {
 		
 		testP = UtilisateurManager.verifPseudo(request.getParameter("sPseudo"));
 		testM = UtilisateurManager.verifMail(request.getParameter("sPseudo"));
-
+		
+		
 		if (!testP) {
 			//récup adresse mail
 			try {
 				mailUtilisateur = UtilisateurManager.recupMail(request.getParameter("sPseudo"));
+				request.setAttribute("retour","true");
 				request.setAttribute("existPseudo", "Ceci est un pseudo, un mail vous a été envoyé à l'adresse " + mailUtilisateur + ".");
 			} catch (DALException e) {
 				e.printStackTrace();
 			}
 		}else if (!testM) {
 			mailUtilisateur = request.getParameter("sPseudo");
+			request.setAttribute("retour","true");
 			request.setAttribute("existMail", "Un mail vous a été envoyé à l'adresse " + mailUtilisateur + ".");
 		}else {
 			request.setAttribute("inexistant", "Ce pseudo ou ce mail n'existe pas.");

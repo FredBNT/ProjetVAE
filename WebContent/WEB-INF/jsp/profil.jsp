@@ -2,7 +2,7 @@
 <link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.jpg" />
 <!------ Include the above in your HEAD tag ---------->
 
-<jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/fragments/header.jsp"></jsp:include>
 
 <div class="jumbotron">
 	<div class="text-center" id="titre">

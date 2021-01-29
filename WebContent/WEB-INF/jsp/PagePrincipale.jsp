@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.png" />
+<%@include file="integrationStyle.jsp"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- vro/page principale -->
 
-<!DOCTYPE html>
-<title>Main Page</title>
+<title>Vente Aux Enchères</title>
 <html>
 <link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.jpg" />
 <%@include file="integrationStyle.jsp"%>
@@ -13,17 +15,18 @@
 <jsp:include page="/WEB-INF/fragments/header.jsp"></jsp:include>
 
 <body>
-	<div class="jumbotron">
-		<div class="text-center" id="titre">
-			<p id="Paragraphe">
-				<b>Bonjour ${sessionScope.sessionUtilisateur.prenom}.</b>
-			</p>
-			<p id="Paragraphe">
-				<b>Vous avez ${sessionScope.sessionUtilisateur.credit} crédit(s)</b>
-			</p>
+	<c:if test="${sessionScope.sessionUtilisateur.prenom != null}"
+		var="test">
+		<br>
+		<div class="jumbotron">
+			<div class="text-center" id="titre">
+				<p id="Paragraphe">
+					<b>Bonjour ${sessionScope.sessionUtilisateur.prenom}, </b> <b>vous
+						avez ${sessionScope.sessionUtilisateur.credit} crédit(s)</b>
+				</p>
+			</div>
 		</div>
-	</div>
-
+	</c:if>
 	<!-- Messages -->
 	<c:if test="${MessageAjoutVente != null}" var="test">
 		<div class="alert alert-success" role="alert">${MessageAjoutVente}</div>
@@ -74,47 +77,51 @@
 					<input type="text"
 						style="width: 200px; display: block; text-align: center; margin: auto;"
 						name="sRecherche" placeholder="Le nom de l'article contient">
+					<h6></h6>
 
-					<br>
 					<div class="col form-group" style="text-align: center;">
 						<label>Catégories </label> <select id="inputCategories"
 							style="width: 200px; display: block; margin: auto;"
 							class="form-control" name="sCategorie">
 							<option selected="">Toutes</option>
+							<option>Auto</option>
 							<option>Sport</option>
 							<option>Informatique</option>
 							<option>Cuisine</option>
-
+							<option>Brico</option>
 						</select>
 					</div>
 
 
+					<h6></h6>
 
-					<div>
+					<div style="text-align: center;">
 						<h3>Filtres :</h3>
 
-						<div>
-							<input type="checkbox" id="cVentes" name="mVentes"> <label
-								for="scales">Mes ventes</label>
+						<div class="form-check form-check-inline">
+							<input type="checkbox" class="form-check-input" id="cVentes"
+								name="mVentes"> <label for="scales">Mes ventes</label>
 						</div>
 
-						<div>
-							<input type="checkbox" id="cEnchere" name="mEnchere"> <label
-								for="horns">Mes enchères en cours</label>
+						<div class="form-check form-check-inline">
+							<input type="checkbox" class="form-check-input" id="cEnchere"
+								name="mEnchere"> <label for="horns">Mes enchères
+								en cours</label>
 						</div>
 
-						<div>
-							<input type="checkbox" id="cAcquisitions" name="mAcquisitions">
-							<label for="horns">Mes acquisitions</label>
+						<div class="form-check form-check-inline">
+							<input type="checkbox" class="form-check-input"
+								id="cAcquisitions" name="mAcquisitions"> <label
+								for="horns">Mes acquisitions</label>
 						</div>
 
-						<div>
-							<input type="checkbox" id="cAutres" name="mAutres"> <label
-								for="horns">Autres enchères</label>
+						<div class="form-check form-check-inline">
+							<input type="checkbox" class="form-check-input" id="cAutres"
+								name="mAutres"> <label for="horns">Autres
+								enchères</label>
 						</div>
 					</div>
-
-					<input class="btn btn-primary btn-block"
+					<br> <input class="btn btn-primary btn-block"
 						style="width: 200px; display: block; margin: auto; text-align: center;"
 						type="submit" value="Rechercher">
 
