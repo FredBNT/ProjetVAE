@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.png" />
+
 <%@include file="integrationStyle.jsp"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- vro/page principale -->
+<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.png" />
 
 <title>Vente Aux Enchères</title>
 <html>
-<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.jpg" />
 <%@include file="integrationStyle.jsp"%>
 
 <jsp:include page="/WEB-INF/fragments/header.jsp"></jsp:include>
@@ -83,15 +83,12 @@
 						<label>Catégories </label> <select id="inputCategories"
 							style="width: 200px; display: block; margin: auto;"
 							class="form-control" name="sCategorie">
-							<option selected="">Toutes</option>
-							<option>Auto</option>
-							<option>Sport</option>
-							<option>Informatique</option>
-							<option>Cuisine</option>
-							<option>Brico</option>
+							<option value="0" selected="">Toutes</option>
+							<c:forEach items="${ categorie }" var="categorie">
+								<option value="${ categorie.numCate }">${ categorie.libelle }</option>
+							</c:forEach>
 						</select>
-					</div>
-					<h6></h6>
+					</div>	<h6></h6>
 
 					<div style="text-align: center;">
 						<h3>Filtres :</h3>

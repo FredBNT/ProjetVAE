@@ -2,10 +2,6 @@ package fr.eni.vae.bo;
 
 import java.io.Serializable;
 
-/**
- *
- */
-
 public class Categorie implements Serializable {
 
 	private int numCate;

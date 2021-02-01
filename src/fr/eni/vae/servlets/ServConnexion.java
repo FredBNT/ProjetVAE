@@ -41,7 +41,7 @@ public class ServConnexion extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		if (request.getParameter("successCreateUser") != null
 				&& request.getParameter("successCreateUser").equals("1")) {
 			doGet(request, response);
@@ -80,7 +80,6 @@ public class ServConnexion extends HttpServlet {
 							&& vUtilisateur.getMdp() != null && vUtilisateur.getMdp().equals(vMdp)) {
 
 				request.getSession().setAttribute("UserConnect", vUtilisateur);
-				// ajout vro
 				// response.sendRedirect("/WEB-INF/jsp/PagePrincipale.jsp");
 				response.sendRedirect("./ServPagePrincipale");
 
@@ -88,20 +87,13 @@ public class ServConnexion extends HttpServlet {
 				// fin ajout
 
 			} else {
-
 				request.setAttribute("error", "Mot de passe ou identifiant incorrect");
-				// ajout vro
 				session.setAttribute("sessionUtilisateur", null);
-				// fin ajout
-
 				doGet(request, response);
-
 			}
 
 		} else {
-			// ajout vro
 			session.setAttribute("sessionUtilisateur", null);
-			// fin ajout
 		}
 
 	}
