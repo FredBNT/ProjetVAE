@@ -4,12 +4,9 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>TrocEnchere</display-name>
+
 	<welcome-file-list>
-
-
-		<welcome-file>index.html</welcome-file>
-
-
+		<welcome-file>connexion</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -18,6 +15,7 @@
 		<servlet-name>AfficherErreur</servlet-name>
 		<jsp-file>/WEB-INF/erreur/erreur.jsp</jsp-file>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>AfficherErreur</servlet-name>
 		<url-pattern>/erreurPage</url-pattern>
@@ -27,14 +25,24 @@
 		<servlet-name>ServDeconnexion</servlet-name>
 		<servlet-class>fr.eni.cours.servlets.ServDeconnexion</servlet-class>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>ServDeconnexion</servlet-name>
 		<url-pattern>/ServDeconnexion</url-pattern>
 	</servlet-mapping>
 
-	
+	    <servlet>
+        <servlet-name>ServNouvelleVente</servlet-name>
+        <servlet-class>fr.eni.cours.servlets.ServNouvelleVente</servlet-class>
+        <multipart-config>
+            <location>/Users/VAE/fichierstmp/</location> <!-- A adapter -->
+            <max-file-size>10485760</max-file-size> <!-- 10 Mo -->
+            <max-request-size>52428800</max-request-size> <!-- 5 x 10 Mo -->
+            <file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
+        </multipart-config>
+    </servlet>
 	
 	<session-config>
-		<session-timeout>10</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 </web-app>
