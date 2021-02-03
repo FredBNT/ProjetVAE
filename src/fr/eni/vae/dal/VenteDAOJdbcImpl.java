@@ -25,7 +25,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	private final String LISTVENTESUTILISATEUR = "select * from ARTICLES_VENDUS where no_utilisateur = ? ;";
 	private final String LISTVENTESCATEGORIE = "select * from ARTICLES_VENDUS where no_categorie = ? ;";
 	private final String LISTVENTESARTICLE = "select * from ARTICLES_VENDUS where nom_article LIKE ? ;";
-	private final String INSERER = "insert into ARTICLES_VENDUS(nom_article, description, date_fin_encheres, prix_initial, prix_vente ,no_utilisateur, no_categorie, visibilite_publication) values (?,?,?,?,?,?,?,?);";
+	private final String INSERER = "insert into ARTICLES_VENDUS(nom_article, description, date_fin_encheres, prix_initial, prix_vente ,no_utilisateur, no_categorie, visibilite_publication, photo) values (?,?,?,?,?,?,?,?,?);";
 	private final String SUPPRIMER = "delete from ARTICLES_VENDUS where no_utilisateur = ? and no_article = ? ;";
 	private final String RECHPARUTETNOM = "select * from ARTICLES_VENDUS where no_utilisateur = ? and nom_article LIKE ?";
 	private final String RECHPARUTETCATE = "select * from ARTICLES_VENDUS where no_utilisateur = ? and no_categorie =?";
@@ -57,6 +57,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteU.setPrixvente(rs.getInt("prix_vente"));
 				venteU.setNumUtil(rs.getInt("no_utilisateur"));
 				venteU.setNumCate(rs.getInt("no_categorie"));
+				venteU.setPhoto(rs.getString("photo"));
 				listeV.add(venteU);
 			}
 		} catch (SQLException e) {
@@ -95,6 +96,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteU.setPrixvente(rs.getInt("prix_vente"));
 				venteU.setNumCate(rs.getInt("no_categorie"));
 				venteU.setNumUtil(rs.getInt("no_utilisateur"));
+				venteU.setPhoto(rs.getString("photo"));
 				listeVentes.add(venteU);
 			}
 		} catch (SQLException e) {
@@ -136,6 +138,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteU.setPrixvente(rs.getInt("prix_vente"));
 				venteU.setNumCate(rs.getInt("no_categorie"));
 				venteU.setNumUtil(rs.getInt("no_utilisateur"));
+				venteU.setPhoto(rs.getString("photo"));
 				listeVentes.add(venteU);
 			}
 		} catch (SQLException e) {
@@ -177,6 +180,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteA.setPrixInitial(rs.getInt("prix_initial"));
 				venteA.setPrixvente(rs.getInt("prix_vente"));
 				venteA.setNumCate(rs.getInt("no_categorie"));
+				venteA.setPhoto(rs.getString("photo"));
 				listeVentes.add(venteA);
 
 			}
@@ -220,6 +224,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteU.setPrixvente(rs.getInt("prix_vente"));
 				venteU.setNumCate(rs.getInt("no_categorie"));
 				venteU.setNumUtil(no_utilisateur);
+				venteU.setPhoto(rs.getString("photo"));
 				listeVentes.add(venteU);
 			}
 		} catch (SQLException e) {
@@ -259,10 +264,10 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteU.setNomArticle(rs.getString("nom_article"));
 				venteU.setDescription(rs.getString("description"));
 				venteU.setDateFinEnchere(LocalDate.parse(rs.getString("date_fin_encheres")));
-				// venteU.setDateFinEnchere(rs.getDate("dateFinEnchere").toLocalDate());
 				venteU.setPrixInitial(rs.getInt("prix_initial"));
 				venteU.setPrixvente(rs.getInt("prix_vente"));
 				venteU.setNumCate(rs.getInt("no_categorie"));
+				venteU.setPhoto(rs.getString("photo"));
 				venteU.setNumUtil(no_utilisateur);
 				listeVentes.add(venteU);
 			}
@@ -307,6 +312,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteU.setPrixvente(rs.getInt("prix_vente"));
 				venteU.setNumCate(no_cate);
 				venteU.setNumUtil(rs.getInt("no_utilisateur"));
+				venteU.setPhoto(rs.getString("photo"));
 				listeVentes.add(venteU);
 
 			}
@@ -346,6 +352,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 			} else {
 				pstmt.setInt(8, 0);
 			}
+			pstmt.setString(9, nVente.getPhoto());
 			pstmt.executeUpdate();
 
 			try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
@@ -378,7 +385,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		PreparedStatement pstmt = null;
 		int nblig = 0;
 		try {
-			cnx = cnx = ConnectionProvider.getConnection();
+			cnx = ConnectionProvider.getConnection();
 			pstmt = cnx.prepareStatement(SUPPRIMER);
 			pstmt.setInt(1, noUtil);
 			pstmt.setInt(2, noVente);
@@ -421,7 +428,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteA.setPrixvente(rs.getInt("prix_vente"));
 				venteA.setNumCate(rs.getInt("no_categorie"));
 				venteA.setNumUtil(Integer.parseInt(rs.getString("no_utilisateur")));
-				venteA.setFinEnchere(rs.getInt("fin_enchere"));
+				venteA.setPhoto(rs.getString("photo"));
 			}
 
 		} catch (SQLException e) {
@@ -463,6 +470,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteA.setPrixvente(rs.getInt("prix_vente"));
 				venteA.setNumCate(rs.getInt("no_categorie"));
 				venteA.setNumUtil(Integer.parseInt(rs.getString("no_utilisateur")));
+				venteA.setPhoto(rs.getString("photo"));
 			}
 
 		} catch (SQLException e) {
@@ -602,7 +610,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteA.setPrixInitial(rs.getInt("prix_initial"));
 				venteA.setPrixvente(rs.getInt("prix_vente"));
 				venteA.setNumCate(rs.getInt("no_categorie"));
-
+				venteA.setPhoto(rs.getString("photo"));
 			}
 		} catch (SQLException e) {
 			throw new DALException("Probleme - recherche mes enchères par nom et cat - " + e.getMessage());
@@ -669,6 +677,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 				venteA.setPrixInitial(rs.getInt("prix_initial"));
 				venteA.setPrixvente(rs.getInt("prix_vente"));
 				venteA.setNumCate(rs.getInt("no_categorie"));
+				venteA.setPhoto(rs.getString("photo"));
 
 			}
 		} catch (SQLException e) {

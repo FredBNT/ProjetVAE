@@ -18,7 +18,7 @@ import fr.eni.vae.dal.DALException;
  * Servlet implementation class ModifierMonProfil
  */
 @WebServlet("/ModifierMonProfil")
-public class ModifierMonProfil extends HttpServlet implements Servlet {
+public class ServModifierMonProfil extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,7 +26,7 @@ public class ModifierMonProfil extends HttpServlet implements Servlet {
 	 *      response)
 	 */
 
-	public ModifierMonProfil() {
+	public ServModifierMonProfil() {
 		super();
 
 	}

@@ -15,7 +15,7 @@ import fr.eni.vae.dal.DALException;
  * Servlet implementation class AjouterUtilisateur
  */
 @WebServlet("/AjouterUtilisateur")
-public class AjouterUtilisateur extends HttpServlet {
+public class ServAjouterUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

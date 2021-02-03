@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.vae.bll.EnchereManager;
 import fr.eni.vae.bll.RetraitManager;
 import fr.eni.vae.bll.VenteManager;
 import fr.eni.vae.bo.Categorie;
@@ -24,7 +25,7 @@ import fr.eni.vae.dal.DALException;
  * Servlet implementation class rechercheVente
  */
 @WebServlet("/rechercheVente")
-public class RechercheVente extends HttpServlet {
+public class ServRechercheVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -60,21 +61,23 @@ public class RechercheVente extends HttpServlet {
 		Retrait retrait = new Retrait();
 		List<Retrait> listRetrait = new ArrayList<>();
 		int numCate = Integer.parseInt(request.getParameter("sCategorie"));
-		
+
 		try {
 			// AUCUN FILMTRE ACTIF
 			if (request.getParameter("mVentes") == null && request.getParameter("mEnchere") == null
 					&& request.getParameter("mAcquisitions") == null && request.getParameter("mAutres") == null) {
-				// *Par cat�gorie* recherche des ventes d'une cat�gorie sans condition sur le nom
+				// *Par cat�gorie* recherche des ventes d'une cat�gorie sans condition sur le
+				// nom
 				if (numCate == 0 && request.getParameter("sRecherche").isEmpty()) {
 					ventes = VenteManager.listeVentes();
 					System.out.println("1");
 				} else if ((numCate != 0) && request.getParameter("sRecherche").isEmpty()) {
 					ventes = VenteManager.ventesCategorie(numCate);
 				}
-				// *Par nom* recherche des ventes � partir du nom, sans condition sur la cat�gorie
+				// *Par nom* recherche des ventes � partir du nom, sans condition sur la
+				// cat�gorie
 				if (request.getParameter("sRecherche") != null && !request.getParameter("sRecherche").isEmpty()
-						&& numCate==0) {
+						&& numCate == 0) {
 					nom = (request.getParameter("sRecherche"));
 					ventes = VenteManager.listeVenteArticle(nom);
 				}
@@ -82,7 +85,7 @@ public class RechercheVente extends HttpServlet {
 			// gestion des cas o� les filtres sont activ�s
 			// *Par utilisateur* recherche des Ventes de l'utilisateur connect�
 			// (mes ventes coch�, cat�gorie � Toutes, rien dans nom)
-			if (request.getParameter("mVentes") != null && numCate==0
+			if (request.getParameter("mVentes") != null && numCate == 0
 					&& request.getParameter("sRecherche").isEmpty()) {
 				ventes = VenteManager.ventesUtilisateur(user.getNumUtil());
 			}
@@ -90,30 +93,31 @@ public class RechercheVente extends HttpServlet {
 			// cat�gorie
 			// (mes ventes coch�, cat�gorie!= Toutes, rien dans nom)
 
-			if (request.getParameter("mVentes") != null && numCate!=0
+			if (request.getParameter("mVentes") != null && numCate != 0
 					&& request.getParameter("sRecherche").isEmpty()) {
 				ventes = VenteManager.listeUtCat(numCate, user.getNumUtil());
 			}
 			// *Par utilisateur, cat�gorie et nom*
 			// (mes ventes coch�, cat�gorie!= Toutes, nom saisi)
-			if (request.getParameter("mVentes") != null && numCate!=0
+			if (request.getParameter("mVentes") != null && numCate != 0
 					&& !request.getParameter("sRecherche").isEmpty()) {
 				nom = request.getParameter("sRecherche");
 				ventes = VenteManager.listeUtNomCat(nom, user.getNumUtil(), numCate);
 			}
 			// recherche ventes utilisateur � partir du nom de l'article
-			if (numCate==0 && !request.getParameter("sRecherche").isEmpty()
+			if (numCate == 0 && !request.getParameter("sRecherche").isEmpty()
 					&& request.getParameter("mVentes") != null) {
 				nom = request.getParameter("sRecherche");
 				ventes = VenteManager.listeUtNom(request.getParameter("sRecherche"), user.getNumUtil());
 			}
-			// *Mes ench�res* recherche des ventes pour lesquelles le user a fait une enchère
+			// *Mes ench�res* recherche des ventes pour lesquelles le user a fait une
+			// enchère
 			if (request.getParameter("mEnchere") != null) {
 				ArrayList<Integer> listV = new ArrayList<>();
 				listV = EnchereManager.quelleVenteEncherie(user.getNumUtil());
 				if (listV != null) {
 					// *Mes ench�res par cat�gorie et/ou nom*
-					if (numCate!=0) {
+					if (numCate != 0) {
 						if (!request.getParameter("sRecherche").isEmpty()) {
 							nom = request.getParameter("sRecherche");
 							Categorie cate = new Categorie();

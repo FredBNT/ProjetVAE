@@ -2,6 +2,9 @@ package fr.eni.vae.dal;
 
 public abstract class DAOFactory {
 
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOJdbcImpl();
+	}
 
 	public static CategorieDAO getCategorieDAO() {
 		return new CategorieDAOJdbcImpl();

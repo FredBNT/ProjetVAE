@@ -38,7 +38,7 @@ public class ServPagePrincipale extends HttpServlet {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("categorie", listeCategorie);
+		request.getSession().setAttribute("categorie", listeCategorie);
 
 		if (request.getParameter("successCreateVente") != null
 				&& request.getParameter("successCreateVente").equals("1")) {

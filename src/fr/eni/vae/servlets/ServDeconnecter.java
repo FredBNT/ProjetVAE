@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServDeconnecter
- * @author jbodet2019
  */
 @WebServlet("/ServDeconnecter")
 public class ServDeconnecter extends HttpServlet {
@@ -20,20 +19,19 @@ public class ServDeconnecter extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		 /* Récupération et destruction de la session en cours */
         HttpSession session = request.getSession();
         session.invalidate();
 
         /* Redirection vers la page de connexion */
-        response.sendRedirect("index.html");
+        response.sendRedirect("connexion");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 	}
 

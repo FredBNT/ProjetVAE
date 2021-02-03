@@ -1,32 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.png" />
+
 <%@include file="integrationStyle.jsp"%>
-<link rel="shortcut icon" type="image/png" href="./lib/iconeLogo.jpg" />
-<!------ Include the above in your HEAD tag ---------->
 
 <jsp:include page="/WEB-INF/fragments/header.jsp"></jsp:include>
 
 <div class="jumbotron">
 	<div class="text-center" id="titre">
-		<p id="Paragraphe">
-			<b>Bonjour ${sessionScope.sessionUtilisateur.prenom}.</b>
-		</p>
-		<p id="Paragraphe">
-			<b>Vous avez ${sessionScope.sessionUtilisateur.credit} crédit(s)</b>
-		</p>
-		<p id="¨Paragraphe">
-			<b>Votre profil</b>
+<h1>Modification du profil</h1>
 	</div>
 </div>
 <div class="container">
 
-	<div class="row">
-		<div class="col-xs-6 col-xs-12 col-md-12">
-			<div class="well well-sm">
-				<div class="row">
-					<div class="col-sm-6 col-md-6">
-						<img src="./lib/avatar_profil.png" alt="avatar"
-							class="img-rounded img-responsive" />
-					</div>
-					<div class="col-sm-6 col-md-6">
+<div class="col-md-12" style="text-align: center;">
+
+		<div class="form-row">
+
 						<h4 style="font-size: 30px">${Pseudo }</h4>
 						<br /> <br />
 						<form action="./Profil" method="post">
@@ -46,13 +41,13 @@
 
 							<p style="font-size: 25px; margin-left: 50px">${Cp } ${Ville }</p>
 							<br /> <i class="glyphicon glyphicon-usd" style="font-size: 25px">
-								${Credit } crédits</i>
+								${Credit } crÃ©dits</i>
 						</form>
 						<br /> <br />
 						<!-- Split button -->
 						<a href="./ServMdpModifs"><button type="button"
 								class="btn btn-primary btn-block">Modifier mon profil</button></a> <br />
-
+<br>
 						<a href="./ServPagePrincipale"><button type="button"
 								class="btn btn-primary btn-block">Retour</button></a>
 					</div>

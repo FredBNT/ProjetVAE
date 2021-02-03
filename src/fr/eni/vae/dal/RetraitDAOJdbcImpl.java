@@ -15,8 +15,8 @@ import fr.eni.vae.dal.ConnectionProvider;;
 public class RetraitDAOJdbcImpl implements RetraitDAO {
 
 	private final static String INSERERRETRAIT = "insert into RETRAITS(no_article, rue, code_postal, ville) values (?,?,?,?);";
-	private final static String RECHERCHERETRAITVENTE = "select * from RETRAITS where no_vente = ? ;";
-	private final static String SUPPRESSION_RETRAIT = "delete FROM RETRAITS WHERE no_vente = ?;";
+	private final static String RECHERCHERETRAITVENTE = "select * from RETRAITS where no_article = ? ;";
+	private final static String SUPPRESSION_RETRAIT = "delete FROM RETRAITS WHERE no_article = ?;";
 
 	public void ajouterRetrait(Retrait retrait) throws DALException {
 		Connection cnx = null;

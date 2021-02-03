@@ -24,26 +24,34 @@
 			<c:if test="${!empty listeRecherchee }">
 				<c:forEach var="v" items="${listeRecherchee }">
 
-					<div class="row col-md-25">
+					<div class="row class="container">
 						<div class="card-body">
-							<div class="col-md-20"
-								style="margin: auto; border: 1px black dashed;">
-								<a href="ServDetailVente?numVente=${v.getNumVente()}"><Strong>${v.getNomArticle()}
-								</strong> </a>
-								<p>
-									<Strong>Dernière offre </Strong>: &euro; ${v.getPrixvente()} <br />
-									<Strong>Fin de l'enchère le </Strong>${v.getDateFinEnchere()}<br />
-									<Strong>Article à retirer à </Strong>
-									<c:forEach var="r" items="${listeRetrait }">
-										<c:if test="${r.getNoVente() == v.getNumVente()}">
+							<div class="col-md-20" style="border: 1px black dashed;">
+								<div class="row ">
+									<div class="col-9">
+										<a href="ServDetailVente?numVente=${v.getNumVente()}"><center>
+												<b>${v.getNomArticle()} </b></a>
+										<p>
+											<Strong>Dernière offre </Strong>: ${v.getPrixvente()} points
+											<br /> <Strong>Fin de l'enchère le </Strong>${v.getDateFinEnchere()}<br />
+											<Strong>Article à retirer à </Strong>
+											<c:forEach var="r" items="${listeRetrait }">
+												<c:if test="${r.getNoVente() == v.getNumVente()}">
 								 	 : ${r.getVille() }
 								 	</c:if>
-									</c:forEach>
-								</p>
+											</c:forEach></center>
+										</p>
+									</div>
+									<div class="col-3">
+										<a href="ServDetailVente?numVente=${v.getNumVente()}"><img src="./pic/${v.getPhoto()}"
+											class="bd-placeholder-img img-thumbnail" width="200"
+											height="200" role="img" aria-label="arialabel"
+											preserveAspectRatio="xMidYMid slice" focusable="true"></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-
 				</c:forEach>
 			</c:if>
 

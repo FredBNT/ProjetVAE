@@ -79,10 +79,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	}
 
-	/**
-	 * 
-	 * m�thode ajouter
-	 */
+	// AJOUTER USER
 	public void ajouter(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
@@ -93,7 +90,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt = cnx.prepareStatement(INSERER, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, user.getPseudo());
 			pstmt.setString(2, user.getNom());
-			pstmt.setString(3, user.getPrenom()); // AMR : modifier l'ordre pour être synchro avec la BD
+			pstmt.setString(3, user.getPrenom());
 			pstmt.setString(4, user.getMail());
 			pstmt.setString(5, user.getTelephone());
 			pstmt.setString(6, user.getRue());
@@ -107,7 +104,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
 				if (generatedKeys.next()) {
 					user.setNumUtil(generatedKeys.getInt(1));
-
 				} else {
 					throw new SQLException("Impossible de créer l'utilisateur, aucun ID obtenu.");
 				}
@@ -592,7 +588,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(1, sPseudo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				mail=rs.getString("email");
+				mail = rs.getString("email");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

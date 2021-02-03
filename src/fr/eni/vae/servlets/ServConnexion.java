@@ -1,8 +1,12 @@
 package fr.eni.vae.servlets;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +16,7 @@ import fr.eni.vae.bll.UtilisateurManager;
 import fr.eni.vae.bo.Utilisateur;
 import fr.eni.vae.dal.DALException;
 
-@WebServlet("/index.html")
+@WebServlet("/connexion")
 public class ServConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +24,8 @@ public class ServConnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	public static final int COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 an
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getParameter("successCreateUser") != null
@@ -29,7 +35,17 @@ public class ServConnexion extends HttpServlet {
 		if (request.getParameter("error") != null) {
 			request.setAttribute("error", null);
 		}
+		
+		Cookie[] cookies = request.getCookies();
 
+	/*	for (Cookie c : cookies) {
+			if ((c.getName().equals("LOGIN") || c.getName().equals("MDP")) && c.getValue() != null
+					&& (!c.getValue().equals("") || c.getValue() != null)) {
+
+				request.setAttribute("checkMemoire", "checked");
+			}
+		}
+		*/
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
@@ -79,12 +95,15 @@ public class ServConnexion extends HttpServlet {
 					|| vUtilisateur != null && vUtilisateur.getMail() != null && vUtilisateur.getMail().equals(vMail)
 							&& vUtilisateur.getMdp() != null && vUtilisateur.getMdp().equals(vMdp)) {
 
-				request.getSession().setAttribute("UserConnect", vUtilisateur);
-				// response.sendRedirect("/WEB-INF/jsp/PagePrincipale.jsp");
-				response.sendRedirect("./ServPagePrincipale");
-
 				session.setAttribute("sessionUtilisateur", vUtilisateur);
-				// fin ajout
+				if (request.getParameter("memoire") != null) {
+					setCookie(response, "MDP", vMdp, COOKIE_MAX_AGE);
+					setCookie(response, "LOGIN", vLogin, COOKIE_MAX_AGE);
+				} else {
+					setCookie(response, "MDP", null, COOKIE_MAX_AGE);
+					setCookie(response, "LOGIN", null, COOKIE_MAX_AGE);
+				}
+				response.sendRedirect("./ServPagePrincipale");
 
 			} else {
 				request.setAttribute("error", "Mot de passe ou identifiant incorrect");
@@ -96,5 +115,18 @@ public class ServConnexion extends HttpServlet {
 			session.setAttribute("sessionUtilisateur", null);
 		}
 
+	}
+
+	private static void setCookie(HttpServletResponse response, String nom, String valeur, int maxAge)
+			throws UnsupportedEncodingException {
+		Cookie cookie;
+		if (valeur != null) {
+			cookie = new Cookie(nom, URLEncoder.encode(valeur, "UTF-8").trim());
+		} else {
+			cookie = new Cookie(nom, null);
+		}
+
+		cookie.setMaxAge(maxAge);
+		response.addCookie(cookie);
 	}
 }

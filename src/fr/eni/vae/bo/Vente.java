@@ -22,50 +22,10 @@ public class Vente implements Serializable {
 	private int prixvente;
 	private int numUtil;
 	private int numCate;
-	private boolean archiver;
-	private boolean publier;
-	private Utilisateur user;
-	private int finEnchere;
-	
-	
-/**
-	 * @return the finEnchere
-	 */
-	public int getFinEnchere() {
-		return finEnchere;
-	}
+	private String photo;
 
-	/**
-	 * @param finEnchere the finEnchere to set
-	 */
-	public void setFinEnchere(int finEnchere) {
-		this.finEnchere = finEnchere;
-	}
-
-	// Constructeur sans param�tre
-	public Vente () {
-		
-	}
-	
-	//
-	public Vente(int numVente, String nomArticle, String description, LocalDate dateFinEnchere, int prixInitial,
-			int prixvente, int numUtil, boolean publier, boolean archiver) {
-		super();
-		this.numVente = numVente;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateFinEnchere = dateFinEnchere;
-		this.prixInitial = prixInitial;
-		this.prixvente = prixvente;
-		this.numUtil = numUtil;
-		this.archiver = archiver;
-		this.publier = publier;
-		
-	}
-	
-	//Constructeur sans user pour créer la vente
-	public Vente( String nomArticle, String description, LocalDate dateFinEnchere, int prixInitial,
-			int prixvente, int numUtil,  boolean publier, boolean archiver) {
+	public Vente(String nomArticle, String description, LocalDate dateFinEnchere, int prixInitial, int prixvente,
+			int numUtil, int numCate, String photo, boolean publier) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -73,51 +33,27 @@ public class Vente implements Serializable {
 		this.prixInitial = prixInitial;
 		this.prixvente = prixvente;
 		this.numUtil = numUtil;
-		this.archiver = archiver;
+		this.numCate = numCate;
+		this.photo = photo;
 		this.publier = publier;
-		
 	}
-	
-	
-	
-	// Constructeur sans le numVente
-	
-	public Vente( String nomArticle, String description, LocalDate dateFinEnchere, int prixInitial,
-			int prixvente, int numUtil,  boolean publier, boolean archiver, Utilisateur user) {
+
+	public Vente() {
+		super();
+	}
+
+	public Vente(String nomArticle, String description, LocalDate dateFinEnchere, int prixInitial, int numUtil,
+			int numCate, String photo, boolean publier) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateFinEnchere = dateFinEnchere;
 		this.prixInitial = prixInitial;
-		this.prixvente = prixvente;
 		this.numUtil = numUtil;
-		this.archiver = archiver;
+		this.numCate = numCate;
+		this.photo = photo;
 		this.publier = publier;
-		this.user = user;
 	}
-	
-	//Constructeur pour créer une vente
-	public Vente(String vArticle, String vDescription, LocalDate dateFin, int prixInit, int prixVente, int numUtilisateur, int numCat,
-			boolean b, boolean c) {
-		
-		setNomArticle(vArticle); 
-		setDescription(vDescription);
-		setDateFinEnchere(dateFin);
-		setPrixInitial(prixInit);
-		setPrixvente(prixVente);
-		setNumUtil(numUtilisateur);
-		setNumCate(numCat);
-		setPublier(b);
-		setArchiver(c);
-
-	}
-	
-	
-	
-	
-	// Getters et Setters
-
-	
 
 	public int getNumVente() {
 		return numVente;
@@ -182,37 +118,30 @@ public class Vente implements Serializable {
 	public void setNumCate(int numCate) {
 		this.numCate = numCate;
 	}
-	public boolean isArchiver() {
-		return archiver;
+
+	public String getPhoto() {
+		return photo;
 	}
-	public void setArchiver(boolean archiver) {
-		this.archiver = archiver;
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
+
 	public boolean isPublier() {
 		return publier;
 	}
+
 	public void setPublier(boolean publier) {
 		this.publier = publier;
 	}
-	public Utilisateur getUser() {
-		return user;
-	}
-	public void setUser(Utilisateur user) {
-		this.user = user;
-	}
 
-	//toString
-	
-	
+	private boolean publier;
+
 	@Override
 	public String toString() {
-		return "Vente [numVente=" + getNumVente() + ", nomArticle=" + nomArticle + ", description=" + description
+		return "Vente [numVente=" + numVente + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateFinEnchere=" + dateFinEnchere + ", prixInitial=" + prixInitial + ", prixvente=" + prixvente
-				+ ", numUtil=" + numUtil + ", numCate=" + numCate + ", archiver=" + archiver + ", publier=" + publier
-				+ ", user=" + user + "]";
+				+ ", numUtil=" + numUtil + ", numCate=" + numCate + ", photo=" + photo + ", publier=" + publier + "]";
 	}
-	
-	
-	
-	
+
 }

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
-
-<!-- Jonathan / Page d'accueil -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 
@@ -28,7 +27,7 @@
 		</div>
 	</div>
 </nav>
-
+<!-- deux façon de faire des IF dans les JSP -->
 <%
 	if (request.getAttribute("MessageAjoutUser") != null) {
 %>
@@ -36,6 +35,10 @@
 <%
 	}
 %>
+<c:if test="${error != null}" var="test">
+	<div class="alert alert-danger" role="alert">${error}</div>
+</c:if>
+			
 
 <div class="container">
 	<div class="row justify-content-center">
@@ -50,16 +53,14 @@
 				</header>
 				<article class="card-body">
 					<!-- Formulaire de connexion -->
-					<form action="./index.html" method="post">
+					<form action="./connexion" method="post">
 						<div class="form-row">
 							<div class="col form-group">
 								<label>Identifiant </label> <input type="text"
-									class="form-control" placeholder="Pseudo" name="sPseudo"
-									required="required">
+									class="form-control" placeholder="Pseudo ou Mail"
+									name="sPseudo" value="${cookie.LOGIN.value}" required autofocus>
 							</div>
-							<!-- form-group end.// -->
 						</div>
-						<!-- form-row end.// -->
 						<div class="form-row">
 							<div class="col form-group">
 								<label>Mot de Passe </label> <input class="form-control"
@@ -70,10 +71,11 @@
 						</div>
 						<!-- form-row end.// -->
 						<div>
-							<input type="checkbox" class="form-check-input"
-								id="dropdownCheck2"> <label class="checkbox checkbox-black"
-								for="dropdownCheck2"> Se souvenir de moi </label>
-							<p class="text-end" >
+							<input type="checkbox" class="form-check-input" id="memoire">
+							<label class="checkbox checkbox-black" for="memoire"
+								value="${sessionScope.checkMemoire}"> Se souvenir de moi
+							</label>
+							<p class="text-end">
 								<a href="./ServOublieMDP" id="MotDePasseOublie">Mot de passe
 									oublié ?</a>
 							</p>
@@ -86,13 +88,7 @@
 						<!-- form-group// -->
 					</form>
 
-					<%
-						if (request.getAttribute("error") != null) {
-					%>
-					<div class="alert alert-danger" role="alert"><%=request.getAttribute("error")%></div>
-					<%
-						}
-					%>
+
 				</article>
 				<!-- card-body end .// -->
 			</div>

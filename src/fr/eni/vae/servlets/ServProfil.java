@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Profil
  */
 @WebServlet("/Profil")
-public class Profil extends HttpServlet {
+public class ServProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
