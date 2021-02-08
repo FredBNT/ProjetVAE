@@ -72,7 +72,7 @@ public class ServAjouterUtilisateur extends HttpServlet {
 					e.printStackTrace();
 				}
 				request.setAttribute("messageCreation", unUtilisateur.getCredit());
-				this.getServletContext().getRequestDispatcher("/index.html?successCreateUser=1").forward(request,
+				this.getServletContext().getRequestDispatcher("/ServConnexion?successCreateUser=1").forward(request,
 						response);
 			} else {
 				request.setAttribute("erreurMDP", "les 2 mdp ne sont pas identiques");

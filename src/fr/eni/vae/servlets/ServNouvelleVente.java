@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import fr.eni.vae.bll.CategorieManager;
 import fr.eni.vae.bll.RetraitManager;
 import fr.eni.vae.bll.VenteManager;
@@ -130,14 +128,16 @@ public class ServNouvelleVente extends HttpServlet {
 	// upload du fichier
 	private String uploadFichier(Part part) throws IOException {
 		// retrouver le nom du fichier uploadé
-		String filename = this.getNomFichier(part);
+		String filename = this.getNomFichier(part); //récupère le nom du fichier
 		String nomFichierUpload;
 		// mise en forme du nom
 		String prefix = filename;
 		String suffix = "";
-		if (filename.contains(".")) {
+		if (filename.contains(".")) { //si le fichier a une extension
 			prefix = filename.substring(0, filename.lastIndexOf('.'));
+			System.out.println(prefix);
 			suffix = filename.substring(filename.lastIndexOf('.'));
+			System.out.println(suffix);
 		}
 
 		// écrire le fichier
@@ -180,8 +180,9 @@ public class ServNouvelleVente extends HttpServlet {
 
 	// retourner le nom d'un fichier envoyé
 	private String getNomFichier(Part part) {
-		for (String cd : part.getHeader(TYPE_CONTENU).split(";")) {
+		for (String cd : part.getHeader(TYPE_CONTENU).split(";")) { //Si plusieurs fichiers, séparés par un point-virgule
 			if (cd.trim().startsWith(NOM_TYPE_CONTENU)) {
+				System.out.println(cd.substring(cd.indexOf('=') + 1).trim().replace("\"", ""));
 				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
 			}
 		}

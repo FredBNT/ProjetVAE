@@ -83,35 +83,41 @@
 							class="form-control" name="sCategorie">
 							<option value="0" selected="">Toutes</option>
 							<c:forEach items="${ categorie }" var="categorie">
-								<option value="${ categorie.numCate }">${ categorie.libelle }</option>
+								<option value="${ categorie.numCate }"
+									<c:if test="${categorie.numCate == numCate}">selected
+								</c:if>>${ categorie.numCate }
+									- ${ categorie.libelle }</option>
 							</c:forEach>
 						</select>
-					</div>	<h6></h6>
+					</div>
 
+					<h6></h6>
 					<div style="text-align: center;">
 						<h3>Filtres :</h3>
 
 						<div class="form-check form-check-inline">
 							<input type="checkbox" class="form-check-input" id="cVentes"
-								name="mVentes"> <label for="scales">Mes ventes</label>
+								name="mVentes" <c:if test="${mVentes != null}">checked</c:if>>
+							<label for="scales">Mes ventes</label>
 						</div>
 
 						<div class="form-check form-check-inline">
 							<input type="checkbox" class="form-check-input" id="cEnchere"
-								name="mEnchere"> <label for="horns">Mes enchères
-								en cours</label>
+								name="mEnchere" <c:if test="${mEnchere != null}">checked</c:if>>
+							<label for="horns">Mes enchères en cours</label>
 						</div>
 
 						<div class="form-check form-check-inline">
 							<input type="checkbox" class="form-check-input"
-								id="cAcquisitions" name="mAcquisitions"> <label
+								id="cAcquisitions" name="mAcquisitions"
+								<c:if test="${mAcquisitions != null}">checked</c:if>> <label
 								for="horns">Mes acquisitions</label>
 						</div>
 
 						<div class="form-check form-check-inline">
 							<input type="checkbox" class="form-check-input" id="cAutres"
-								name="mAutres"> <label for="horns">Autres
-								enchères</label>
+								name="mAutres" <c:if test="${mAutres != null}">checked</c:if>>
+							<label for="horns">Autres enchères</label>
 						</div>
 					</div>
 					<br> <input class="btn btn-primary btn-block"

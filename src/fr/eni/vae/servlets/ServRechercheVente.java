@@ -168,7 +168,12 @@ public class ServRechercheVente extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		
+		request.setAttribute("mVentes", request.getParameter("mVentes"));	
+		request.setAttribute("mAcquisitions", request.getParameter("mAcquisitions"));
+		request.setAttribute("mEnchere", request.getParameter("mEnchere"));
+		request.setAttribute("mAutres", request.getParameter("mAutres"));
+		request.setAttribute("numCate", numCate);
 		request.setAttribute("listeRetrait", listRetrait);
 		request.setAttribute("listeRecherchee", ventes);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/PagePrincipale.jsp").include(request, response);

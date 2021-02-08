@@ -22,8 +22,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
-				<a class="nav-link" href="index.html">Annuler</a> <a
+				<a class="nav-link active" aria-current="page" href="connexion">Accueil</a>
+				<a class="nav-link" href="connexion">Annuler</a> <a
 					class="nav-link" href="#">A propos</a>
 			</div>
 		</div>
@@ -162,7 +162,7 @@
 		</div>
 		<div class="col"></div>
 		<div class="col">
-			<form method="get" action="index.html">
+			<form method="get" action="./connexion">
 				<button class="btn btn-warning btn-block" type="submit">Abandonner</button>
 			</form>
 		</div>
